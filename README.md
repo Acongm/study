@@ -1,6 +1,6 @@
-# TypeScript
-TypeScript 学习记录
+# npm/yarn/pnpm/ni 的选择
 
-test
-
-11
+- [npm](./npm-yarn-pnpm/npm.md)
+- [yarn](./npm-yarn-pnpm/yarn.md)
+- [pnpm](./npm-yarn-pnpm/pnpm.md)
+- [ni](./npm-yarn-pnpm/ni.md)

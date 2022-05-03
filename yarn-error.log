@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/acongm/.nvm/versions/node/v14.17.6/bin/node /usr/local/bin/yarn add -D react-router 3.2.1
+
+PATH: 
+  /Users/acongm/.rvm/gems/ruby-2.4.1/bin:/Users/acongm/.rvm/gems/ruby-2.4.1@global/bin:/Users/acongm/.rvm/rubies/ruby-2.4.1/bin:/Users/acongm/.nvm/versions/node/v14.17.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/acongm/.rvm/gems/ruby-2.4.1/bin:/Users/acongm/.rvm/gems/ruby-2.4.1@global/bin:/Users/acongm/.rvm/rubies/ruby-2.4.1/bin:/Users/acongm/.nvm/versions/node/v14.17.6/bin:/Users/acongm/.rvm/bin:/Users/acongm/.rvm/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.6
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/3.2.1: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:400:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:400:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:519:28)
+      at IncomingMessage.emit (events.js:412:35)
+      at endReadableNT (internal/streams/readable.js:1317:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

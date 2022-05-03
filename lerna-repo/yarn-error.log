@@ -1,0 +1,41 @@
+Arguments: 
+  /Users/acongm/.nvm/versions/node/v14.17.6/bin/node /usr/local/bin/yarn workspaces info
+
+PATH: 
+  /Users/acongm/.rvm/gems/ruby-2.4.1/bin:/Users/acongm/.rvm/gems/ruby-2.4.1@global/bin:/Users/acongm/.rvm/rubies/ruby-2.4.1/bin:/Users/acongm/.nvm/versions/node/v14.17.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/acongm/.rvm/gems/ruby-2.4.1/bin:/Users/acongm/.rvm/gems/ruby-2.4.1@global/bin:/Users/acongm/.rvm/rubies/ruby-2.4.1/bin:/Users/acongm/.nvm/versions/node/v14.17.6/bin:/Users/acongm/.rvm/bin:/Users/acongm/.rvm/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.6
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/acongm/code/demo/study/lerna-repo/package.json: Unexpected string in JSON at position 128
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "root",
+    "private": true,
+    "workspaces": [
+      "packages/*"
+    ],
+    "devDependencies": {
+      "lerna": "^4.0.0"
+      "lerna": "^3.20.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

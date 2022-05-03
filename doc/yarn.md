@@ -6,6 +6,8 @@
 - lerna
 - pnp
 
+
+
 ## yarn 1 优势
 - 速度快
   - 并行安装：无论 npm 还是 Yarn 在执行包的安装时，都会执行一系列任务。npm 是按照队列执行每个 package，也就是说必须要等到当前 package 安装完成之后，才能继续后面的安装。而 Yarn 同步执行所有任务，提高了性能。
@@ -23,3 +25,4 @@
 - [yarn 2 文档](https://yarnpkg.com/getting-started/migration)
 - [Yarn 2尝鲜](https://juejin.cn/post/6896447858841681928)
 - [字节的一个小问题 npm 和 yarn不一样吗？](https://juejin.cn/post/7060844948316225572)
+- [从0到0.5创建一个monorepos项目](https://juejin.cn/post/6844904142477983751)

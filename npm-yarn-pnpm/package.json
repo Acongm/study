@@ -1,0 +1,24 @@
+{
+  "name": "npm-yarn-pnpm",
+  "version": "1.0.0",
+  "description": "npm-yarn-pnpm test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Acongm/study.git"
+  },
+  "keywords": [
+    "npm",
+    "yarn",
+    "pnpm"
+  ],
+  "author": "acongm@126.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Acongm/study/issues"
+  },
+  "homepage": "https://github.com/Acongm/study#readme"
+}

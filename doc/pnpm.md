@@ -1,4 +1,4 @@
-# pnpm
+# pnpm - performant npm
 
 The app's `package.json` [here](https://github.com/pnpm/benchmarks-of-javascript-package-managers/edit/main/fixtures/alotta-files/package.json)
 
@@ -18,7 +18,14 @@ The app's `package.json` [here](https://github.com/pnpm/benchmarks-of-javascript
 
 ## 缺点
 
+- 目前pnpm7 最低支持 node v14.19.1 (需要node较高版本运行环境)
+- 对于旧项目存在
+
+
+
 ## 参考资料
 - [Why should we use pnpm?](https://www.kochan.io/nodejs/why-should-we-use-pnpm.html)
 - [pnpm 项目](https://github.com/pnpm/sample-project)
 - [JavaScript package managers compared: npm, Yarn, or pnpm?](https://blog.logrocket.com/javascript-package-managers-compared/)
+- [Pnpm: 最先进的包管理工具](https://zhuanlan.zhihu.com/p/404784010)
+- [Flat node_modules is not the only way](https://pnpm.io/blog/2020/05/27/flat-node-modules-is-not-the-only-way)

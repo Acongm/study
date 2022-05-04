@@ -1,4 +1,5 @@
 # 现代包管理器 - npm/yarn/pnpm 的选择
+
 ##  javascript 包管理的历史
 - npm 出现之前：前端依赖项是保存到存储库中并手动下载的📁
 - 2010：npm 发布并支持 nodejs📦
@@ -22,8 +23,6 @@
 - 2017：npm 5 发布🔓
   - package-lock.json 是他们的新工具，shrinkwrap 被放在一边
   - package-lock.json 开始与 yarns 锁定文件竞争
-
-
 - 2018：npm ci 发布🛬
   - 直接用 package-lock.json 构建代码
   - 没有代价高昂的依赖项安全性分析和版本分析
@@ -36,7 +35,7 @@
   - 尚未做好投入生产环境的准备
 - ...
 
-## npm/yarn 的升级之路与问题
+## npm/yarn 的问题
 - 在最早期的`npm`版本(npm v2)，`npm`的设计可以说是非常的简单,在安装依赖的时候会将依赖放到` node_modules`文件中; 随着项目的不断增大，依赖逐渐变成一个巨大的依赖树，不同依赖之间重复的依赖包也会重复安装，既占用我们电脑内存，也在安装/删除的过程
 中变得极为缓慢， 形成`嵌套地狱`
 - 为了解决这些问题，(npm v3)重新考虑了node_modules结构并提出了扁平化。
@@ -71,16 +70,23 @@ node_modules
     - 例如，dui 中使用的 `moment.js`, 随着后面可能的升级， 假如将其替换为`day.js`,将导致代码报错
   - 在很多时候， 我们安装一个依赖， 在`node_modules`中存在一堆乱七八糟的依赖，极度影响排查问题
 
-## pnpm 依赖管理
+## 大胆设想
+
+aa：我们来YY一下新的`node_modules`结构吧，怎么让`node_modules`看起来更干净呢？
+bb：我们项目中使用了 `react`、`@dji/dui` 两个包，能不能在里面只显示这两个包的依赖呀！
+aa：那这两个包所需的依赖怎么办呢？
+bb：要不搞个隐藏文件放起来，并且不嵌套，用链接连起来，每个包用版本号区分开就好了
+aa：那我们怎么超过 npm/yarn 的速度呢？
+bb：我们用硬链接吧，即速度超过了他们，还省磁盘空间了
 
 
+## pnpm - 一个新的包版本管理解决方案
+[平铺的结构不是 node_modules 的唯一实现方式](https://pnpm.io/zh/blog/2020/05/27/flat-node-modules-is-not-the-only-way)
 
+### 什么是pnpm
+`pnpm` - 高性能 npm
 
-##
-
-## 什么是pnpm
-`pnpm`
-## 二、特性概览
+### 特性概览
 **1、速度快**
 pnpm 安装包的速度究竟有多快？我们可以从 `pnpm` 的官方文档中找到答案
 
@@ -109,7 +115,7 @@ pnpm 内部使用`基于内容寻址`的文件系统来存储磁盘上所有的�
 - 即使一个包的不同版本，pnpm 也会极大程度地复用之前版本的代码。举个例子，比如 lodash 有 100 个文件，更新版本之后多了一个文件，那么磁盘当中并不会重新写入 101 个文件，而是保留原来的 100 个文件的 `hardLink`，仅仅写入那`一个新增的文件`。
 
 ```
-硬连接
+硬连接测试
 创建两个相同的项目 `npm-yarn-pnpm`、`npm-yarn-pnpm-hardLink`
 分别用pnpm 安装依赖 `pnpm install`
 同时到其中一个包， 例如 `react-router`
@@ -125,7 +131,101 @@ pnpm 内部使用`基于内容寻址`的文件系统来存储磁盘上所有的�
 **4. 安全性高**
 之前在使用 npm/yarn 的时候，由于 node_module 的扁平结构，如果 A 依赖 B， B 依赖 C，那么 A 当中是可以直接使用 C 的，但问题是 A 当中并没有声明 C 这个依赖。因此会出现这种非法访问的情况。但 pnpm 脑洞特别大，自创了一套依赖管理方式，很好地解决了这个问题，保证了安全性
 
-## 依赖管理
+### 使用
+说了这么多，估计你会觉得 `pnpm` 挺复杂的，是不是用起来成本很高呢？
+恰好相反，pnpm 使用起来十分简单，如果你之前有 npm/yarn 的使用经验，甚至可以无缝迁移到 pnpm 上来。不信我们来举几个日常使用的例子。
+
+#### pnpm install
+跟 npm install 类似，安装项目下所有的依赖。但对于 monorepo 项目，会安装 workspace 下面所有 packages 的所有依赖。不过可以通过 --filter 参数来指定 package，只对满足条件的 package 进行依赖安装。
+当然，也可以这样使用，来进行单个包的安装:
+
+```js
+// 安装 axios
+pnpm install axios
+// 安装 axios 并将 axios 添加至 devDependencies
+pnpm install axios -D
+// 安装 axios 并将 axios 添加至 dependencies
+pnpm install axios -S
+复制代码
+```
+
+当然，也可以通过 --filter 来指定 package。
+
+#### pnpm update
+根据指定的范围将包更新到最新版本，monorepo 项目中可以通过 --filter 来指定 package。
+
+#### pnpm uninstall
+在 node_modules 和 package.json 中移除指定的依赖。monorepo 项目同上。举例如下:
+```
+// 移除 axios
+pnpm uninstall axios --filter package-a
+```
+
+<!-- ### 依赖管理 -->
+<!-- ### hard link -->
+
+--
+面对 npm / yarn / pnpm， 可能我们需要根据不同场景去选择不同的工具来更高效开发， 所以就有了 `ni` 
+--
+
+## ni
+### 前言
+当我们看 [vue3仓库](https://github.com/vuejs/core/blob/main/.github/contributing.md#development-setup) 时， 发现 vue3 建议使用 `pnpm` 来安装依赖， 并推荐安装 `ni` 以帮助在不同的包版本管理器之间切换。
+
+### 特点
+- 使用`TypeScript`作为开发语言
+- 核心代码仅仅一百多行
+
+### ni做了什么
+1. 根据锁文件猜测用哪个包管理器 npm/yarn/pnpm - [detect 函数](https://github.com/antfu/ni/src/detect.ts)
+2. 抹平不同的包管理器的命令差异 - [parseNi 函数](https://github.com/antfu/ni/src/commands.ts)
+3. 最终运行相应的脚本 - [execa 工具](https://github.com/sindresorhus/execa)
+<!-- 
+1. 找到项目根路径下的锁文件。返回对应的包管理器 `npm/yarn/pnpm`。
+2. 如果没找到，那就返回 `null`。
+3. 如果找到了，但是用户电脑没有这个命令，则询问用户是否自动安装。 
+-->
+
+### 使用
+全局安装
+```shell
+npm i -g @antfu/ni
+```
+install
+```shell
+ni
+# npm install
+# yarn install
+# pnpm install
+```
+add
+```shell
+ni axios
+# npm i axios
+# yarn add axios
+# pnpm add axios
+```
+
+### 猜一猜
+**如果package-lock.json,yarn.lock,pnpm-lock.yaml都存在的话，按哪个执行呢？**
+
+```ts
+// ni/src/agents.ts
+export const LOCKS: Record<string, Agent> = {
+  'pnpm-lock.yaml': 'pnpm',
+  'yarn.lock': 'yarn',
+  'package-lock.json': 'npm',
+}
+```
+
+### 总结
+从`ni`工具来看，一百来行代码可以实现 npm、yarn、pnpm 工具的自定义， 我们可以借鉴它来实现自己的shell工具自定义包， 下一次，让我们来试着实现一个类似的包
+
+**尽情期待。。。。**
+
+
+
+## 其他
 
 - [npm](./npm-yarn-pnpm/doc/npm.md)
 - [yarn](./npm-yarn-pnpm/doc/yarn.md)

@@ -216,7 +216,7 @@ pnpm 有个根目录，一般都是保存在 user/.pnpm-store 下，pnpm 通过�
 `cd node_modules/react-router`
 `ls -li` 查看文件id
 ```
-![WechatIMG204.png](https://s3.djicorp.com/dochub-public/be/48640025-3de0-3c20-87f8-820f85e439ae.png)
+![WechatIMG204.png](./WechatIMG204.png)
 #### 软链接
 
 - 软链接类似windows系统的快捷方式；
